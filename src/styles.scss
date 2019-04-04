@@ -1,0 +1,14 @@
+
+//$fa-font-path: "../node_modules/@fortawesome/fontawesome-free/webfonts/";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+@import "~bootstrap/scss/bootstrap";
+
+.hidden {
+  display: none;
+}
+
+.step {
+  background: rgba(0,0,0,.04);
+  border-radius: 5px;
+  padding: 15px;
+}

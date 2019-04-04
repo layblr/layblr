@@ -1,0 +1,94 @@
+<div class="step export">
+  <h2>Export</h2>
+
+  <div class="facts row">
+    <div class="col-4 key">
+      Feature Splits
+    </div>
+    <div class="col-8 value">
+      {{ stepService.totalSplits }}
+    </div>
+
+    <div class="col-4 key">
+      Classified Frames
+    </div>
+    <div class="col-8 value">
+      {{ numFrames }}
+    </div>
+  </div>
+
+  <br>
+
+  <h4>File Exports</h4>
+
+  <div class="alert alert-info" [hidden]="!exporting">
+    <div class="row">
+      <div class="col-1">
+        <span class="spinner-border" role="status" aria-hidden="true"></span>
+      </div>
+      <div class="col">
+        <strong>Export in progress</strong>
+        <br>
+        We are currently exporting to your desired format, this can take some time...
+      </div>
+    </div>
+  </div>
+
+  <div class="exports row" [hidden]="exportResult !== null">
+    <div class="export-option-outer col-6">
+      <div class="export-option">
+        <strong>Classified Features</strong>
+        <p>
+          Export all the input features with one additional column including the classified category extracted from the recorded
+          frames.
+        </p>
+        <p>
+          <strong>Filename: </strong> {{ exportFilename('classified_features') }}
+        </p>
+        <button type="button" class="btn btn-block btn-primary" [disabled]="exporting" (click)="executeExport('classified_features')">
+          Export Classified Features
+        </button>
+      </div>
+    </div>
+
+    <div class="export-option-outer col-6">
+      <div class="export-option">
+        <strong>Separate Classes per Split</strong>
+        <p>
+          Export only the classes to a separate file with intervals just as the input features files.
+        </p>
+        <p>
+          <strong>Filename: </strong> {{ exportFilename('separate_classes_per_split') }}<br>
+          <strong>Columns: </strong>split, category
+        </p>
+        <button type="button" class="btn btn-block btn-primary" [disabled]="exporting" (click)="executeExport('separate_classes_per_split')">
+          Export Classes Per Split
+        </button>
+      </div>
+    </div>
+
+    <div class="export-option-outer col-6">
+      <div class="export-option">
+        <strong>Separate Classes per Frame</strong>
+        <p>
+          Export only the classes to a separate file with only the frames that you recorded,
+          in total {{ stepService.frames.size }} frames to a csv file.
+        </p>
+        <p>
+          <strong>Filename: </strong> {{ exportFilename('separate_classes_per_frame') }}<br>
+          <strong>Columns: </strong>split, time, category
+        </p>
+        <button type="button" class="btn btn-block btn-primary" [disabled]="exporting" (click)="executeExport('separate_classes_per_frame')">
+          Export Classes Per Frame
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="results">
+    <h5>Results</h5>
+    <p>
+      You can find your export in the following file: <code>{{ exportResult }}</code>
+    </p>
+  </div>
+</div>

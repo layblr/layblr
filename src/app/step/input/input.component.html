@@ -1,0 +1,42 @@
+<div class="step files">
+  <h2>Input files</h2>
+  <div class="row">
+    <div class="col">
+      <label for="files_audio">
+        Audio File
+      </label>
+
+      <div class="input-group mb-3">
+        <input type="text" id="files_audio" readonly="readonly" class="form-control" [(ngModel)]="stepService.audioFile">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button" id="files_audio_select" (click)="browse('audio')">
+            Browse...
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <label for="files_features">
+        Features File
+      </label>
+
+      <div class="input-group mb-3">
+        <input type="text" id="files_features" readonly="readonly" class="form-control" [(ngModel)]="stepService.featuresFile">
+        <div class="input-group-append">
+          <button type="button" id="files_features_select" class="btn btn-primary" (click)="browse('features')">
+            Browse...
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <button type="button" class="btn btn-lg btn-primary" [disabled]="!stepService.featuresFile || !stepService.audioFile" (click)="next()">
+      Next
+    </button>
+  </div>
+
+</div>
+
+<app-browse-modal #browseModal></app-browse-modal>

@@ -1,0 +1,5 @@
+tornado==6.0.2
+tornado-jinja2==0.2.4
+
+pandas==0.24.2
+pydub==0.23.1

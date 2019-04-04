@@ -1,0 +1,27 @@
+
+.modal-dialog{
+  overflow-y: initial !important
+}
+.modal-body{
+  height: 65vh;
+  overflow-y: auto;
+}
+#browser_list tr {
+  cursor: pointer;
+}
+#browser_list tr:hover {
+  text-decoration: underline;
+  color: cornflowerblue;
+}
+#browser_list tr.active {
+  background: rgba(0, 0, 0, 0.15);
+  border: 2px rgba(0, 0, 0, 0.20) dashed;
+}
+#browser_list tr.active:after {
+  display: inline-block;
+  position: absolute;
+  left: -5px;
+  margin-top: 5px;
+  content: '\25B6';
+  color: cornflowerblue;
+}

@@ -1,0 +1,75 @@
+<div class="step options">
+  <div class="row">
+    <div class="col">
+      <h2>Options</h2>
+    </div>
+    <div class="col-2">
+      <button type="button" id="options_auto_detect" class="btn btn-primary btn-block btn-lg" (click)="autoDetect()" [disabled]="loading">
+        <span *ngIf="loading">
+          <span class="spinner-border" role="status" aria-hidden="true"></span> Detecting...
+        </span>
+        <span *ngIf="! loading">
+          Auto Detect
+        </span>
+      </button>
+    </div>
+  </div>
+  <p class="text-muted">
+    Auto detecting the values can take some time and will consume lots of memory and CPU.
+  </p>
+
+  <div class="row">
+    <div class="col">
+      <label for="options_sample_rate">
+        Sample Rate (Hz)
+      </label>
+
+      <input type="number" [disabled]="loading" name="options_sample_rate" id="options_sample_rate" class="form-control" [(ngModel)]="stepService.sampleRate">
+    </div>
+    <div class="col">
+      <label for="options_total_duration">
+        Total duration (ms)
+      </label>
+
+      <input type="number" [disabled]="loading" name="options_total_duration" id="options_total_duration" class="form-control" [(ngModel)]="stepService.totalDuration">
+    </div>
+    <div class="col">
+      <label for="options_split_duration">
+        Split duration (ms)
+      </label>
+
+      <input type="number" [disabled]="loading" name="options_split_duration" id="options_split_duration" class="form-control" [(ngModel)]="stepService.splitDuration">
+      <span class="help-text">
+        <var>sd</var> = <var>total_duration</var> / <var>total_splits</var>
+      </span>
+    </div>
+    <div class="col">
+      <label for="options_total_splits">
+        Total splits (csv lines)
+      </label>
+
+      <input type="number" [disabled]="loading" name="options_total_splits" id="options_total_splits" class="form-control" [(ngModel)]="stepService.totalSplits">
+    </div>
+  </div>
+
+  <br>
+
+  <h5>Categories</h5>
+  <p>
+    Every line of the text area represents one category.
+  </p>
+  <textarea class="form-control form-control-sm"
+            rows="10"
+            [(ngModel)]="stepService.classifyCategoriesValue"
+  ></textarea>
+
+  <br>
+
+  <div class="row justify-content-center">
+    <div class="col-3">
+      <button type="button" id="options_done" class="btn btn-lg btn-block btn-primary" [disabled]="!stepService.totalSplits || !stepService.splitDuration || !stepService.totalDuration || !stepService.sampleRate" (click)="next()">
+        Start Stamper!
+      </button>
+    </div>
+  </div>
+</div>
