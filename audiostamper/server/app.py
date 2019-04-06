@@ -9,6 +9,7 @@ from tornado.web import StaticFileHandler, RedirectHandler
 from audiostamper.handler.analyse import AnalyseHandler
 from audiostamper.handler.browser import BrowserHandler
 from audiostamper.handler.export import ExportHandler
+from handler.spa import AppHandler
 
 
 class App(tornado.web.Application):
@@ -25,7 +26,8 @@ class App(tornado.web.Application):
 			(r'/ajax/export', 						ExportHandler),
 			(r'/ajax/analyse/(?P<file>[^\/]+)',		AnalyseHandler),
 			(r'/ajax/audio/(.+\.(mp3|wav))', 		StaticFileHandler, dict(path=self.root_dir)),
-			(r'/(.*)',								StaticFileHandler, dict(path=self.build_dir)),
+			(r'/(.*)', 								StaticFileHandler, dict(path=self.build_dir)),
+			(r'/(.*)',								AppHandler),
 		]
 
 		enable_pretty_logging()
@@ -39,6 +41,8 @@ class App(tornado.web.Application):
 		)
 		jinja2_loader = Jinja2Loader(jinja2_env)
 		settings['template_loader'] = jinja2_loader
+
+		settings['default_handler_class'] = AppHandler
 
 		super().__init__(handlers, default_host, transforms, **settings)
 
