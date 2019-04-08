@@ -61,21 +61,21 @@
 
   <div class="classify-container">
     <div class="classify-fragmentation" #classifyContainer>
-      <div *ngFor="let frame of stepService.frames | keyvalue"
+      <div *ngFor="let frameId of stepService.orderedFrames"
            class="classify-frame"
-           [class.current]="currentFrame === frame.value"
-           [style.background-color]="stepService.getClassifierColor(frame.value.category)">
-        <div class="frame-split">#{{ frame.value.split }}</div>
-        <div class="frame-category">{{ frame.value.category }}</div>
+           [class.current]="currentFrame === stepService.frames[frameId]"
+           [style.background-color]="stepService.getClassifierColor(stepService.frames[frameId].category)">
+        <div class="frame-split">#{{ stepService.frames[frameId].split }}</div>
+        <div class="frame-category">{{ stepService.frames[frameId].category }}</div>
 
         <div class="frame-options">
-          <a href="javascript:;" (click)="removeFrame(frame.value)">
+          <a href="javascript:;" (click)="removeFrame(stepService.frames[frameId])">
             &times;
           </a>
         </div>
         <div class="frame-time">
-          <a href="javascript:;" (click)="player.currentTime = frame.value.time">
-            {{ formatTime(frame.value.time) }}
+          <a href="javascript:;" (click)="player.currentTime = stepService.frames[frameId].time">
+            {{ formatTime(stepService.frames[frameId].time) }}
           </a>
         </div>
       </div>

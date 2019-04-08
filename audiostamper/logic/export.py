@@ -9,7 +9,7 @@ def export_classified_features(**options):
 	# Create list from frames
 	last_frame = None
 	split_categories = list()
-	for split_nr in range(0, options['total_splits'] - 1):
+	for split_nr in range(0, options['total_splits']):
 		if str(split_nr) in options['frames']:
 			last_frame = options['frames'][str(split_nr)]
 		if last_frame:
@@ -28,7 +28,7 @@ def export_separate_classes_per_split(**options):
 	with open(options['export_path'], 'w', newline='') as handler:
 		# Fields: Split Number, Category
 		writer = csv.writer(handler)
-		for split_nr in range(0, options['total_splits'] - 1):
+		for split_nr in range(0, options['total_splits']):
 			if str(split_nr) in options['frames']:
 				last_frame = options['frames'][str(split_nr)]
 			writer.writerow([split_nr, last_frame['category'] if last_frame and 'category' in last_frame else None])

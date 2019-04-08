@@ -40,6 +40,9 @@ export class StepService implements StepStorage {
   get classifyCategoriesValue() {
     return this.classifyCategories.join('\n');
   }
+  get orderedFrames() {
+    return Object.keys(this.frames);
+  }
 
   constructor(
     private localStorage: LocalStorage
