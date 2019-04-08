@@ -26,8 +26,7 @@ class App(tornado.web.Application):
 			(r'/ajax/export', 						ExportHandler),
 			(r'/ajax/analyse/(?P<file>[^\/]+)',		AnalyseHandler),
 			(r'/ajax/audio/(.+\.(mp3|wav))', 		StaticFileHandler, dict(path=self.root_dir)),
-			(r'/(.*)', 								StaticFileHandler, dict(path=self.build_dir)),
-			(r'/(.*)',								AppHandler),
+			(r'/(.*)',								AppHandler, dict(path=self.build_dir)),
 		]
 
 		enable_pretty_logging()
