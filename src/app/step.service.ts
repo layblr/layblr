@@ -80,6 +80,7 @@ export class StepService implements StepStorage {
       });
     });
   }
+
   public async load() {
     return new Promise((resolve, reject) => {
       this.localStorage.getItem('stamper-session')
@@ -102,6 +103,7 @@ export class StepService implements StepStorage {
         });
     });
   }
+
   public async clear() {
     this.audioFile = null;
     this.featuresFile = null;
@@ -112,5 +114,6 @@ export class StepService implements StepStorage {
     this.classifyCategories = ['talk', 'advertisement', 'music', 'other'];
     this.frames = {};
     await this.localStorage.removeItem('stamper-session');
+    await this.save();
   }
 }

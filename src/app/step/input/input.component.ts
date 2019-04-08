@@ -17,8 +17,8 @@ export class InputComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.stepService.featuresFile = 'record_2019-03-20_14-22-52.mp3.csv';
-    this.stepService.audioFile = 'record_2019-03-20_14-22-52.mp3';
+    // this.stepService.featuresFile = 'record_2019-03-20_14-22-52.mp3.csv';
+    // this.stepService.audioFile = 'record_2019-03-20_14-22-52.mp3';
   }
 
   async browse(type: string) {
