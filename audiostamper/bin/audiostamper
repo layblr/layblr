@@ -1,0 +1,5 @@
+#!/usr/bin/env python3
+from audiostamper import stamp
+
+if __name__ == '__main__':
+	stamp.execute_from_cli()
