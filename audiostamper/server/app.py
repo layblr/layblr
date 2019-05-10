@@ -9,6 +9,8 @@ from tornado.web import StaticFileHandler, RedirectHandler
 from audiostamper.handler.analyse import AnalyseHandler
 from audiostamper.handler.browser import BrowserHandler
 from audiostamper.handler.export import ExportHandler
+from audiostamper.handler.importer import ImporterHandler
+from handler.audio import AudioFileHandler
 from handler.spa import AppHandler
 
 
@@ -24,8 +26,10 @@ class App(tornado.web.Application):
 			(r'/', 									RedirectHandler, dict(url='/index.html')),
 			(r'/ajax/browse', 						BrowserHandler),
 			(r'/ajax/export', 						ExportHandler),
+			(r'/ajax/import', 						ImporterHandler),
 			(r'/ajax/analyse/(?P<file>[^\/]+)',		AnalyseHandler),
 			(r'/ajax/audio/(.+\.(mp3|wav))', 		StaticFileHandler, dict(path=self.root_dir)),
+			# (r'/ajax/audio/(.+\.(mp3|wav))',		AudioFileHandler),
 			(r'/(.*)',								AppHandler, dict(path=self.build_dir)),
 		]
 

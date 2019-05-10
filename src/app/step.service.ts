@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import seedColor from 'seed-color';
-import {LocalStorage} from "@ngx-pwa/local-storage";
+import { LocalStorage } from "@ngx-pwa/local-storage";
 
 export interface StepStorage {
   audioFile: string,
   featuresFile: string,
+  predictionsFile: string,
   sampleRate: number,
   totalDuration: number,
   totalSplits: number,
@@ -25,6 +26,7 @@ export interface Frame {
 export class StepService implements StepStorage {
   public audioFile: string;
   public featuresFile: string;
+  public predictionsFile: string;
 
   public sampleRate: number;
   public totalDuration: number;
@@ -64,9 +66,10 @@ export class StepService implements StepStorage {
 
   public async save() {
     return new Promise((resolve, reject) => {
-      this.localStorage.setItem('stamper-session', {
+      let data = {
         audioFile: this.audioFile,
         featuresFile: this.featuresFile,
+        predictionsFile: this.predictionsFile,
 
         sampleRate: this.sampleRate,
         totalDuration: this.totalDuration,
@@ -76,7 +79,8 @@ export class StepService implements StepStorage {
         classifyCategories: this.classifyCategories,
 
         frames: this.frames,
-      }).subscribe(() => {
+      };
+      this.localStorage.setItem('stamper-session', data).subscribe(() => {
         resolve();
       }, (error) => {
         reject(error);
@@ -89,15 +93,7 @@ export class StepService implements StepStorage {
       this.localStorage.getItem('stamper-session')
         .subscribe((data) => {
           if (StepService.isStorage(data)) {
-            this.audioFile = data.audioFile;
-            this.featuresFile = data.featuresFile;
-            this.sampleRate = data.sampleRate;
-            this.totalDuration = data.totalDuration;
-            this.totalSplits = data.totalSplits;
-            this.splitDuration = data.splitDuration;
-            this.classifyCategories = data.classifyCategories;
-            this.frames = data.frames;
-
+            this.loadFromObject(data);
             return resolve(true);
           }
           return resolve(false);
@@ -107,9 +103,22 @@ export class StepService implements StepStorage {
     });
   }
 
+  public loadFromObject(data: StepStorage) {
+    this.audioFile = data.audioFile;
+    this.featuresFile = data.featuresFile;
+    this.predictionsFile = data.predictionsFile;
+    this.sampleRate = data.sampleRate;
+    this.totalDuration = data.totalDuration;
+    this.totalSplits = data.totalSplits;
+    this.splitDuration = data.splitDuration;
+    this.classifyCategories = data.classifyCategories;
+    this.frames = data.frames;
+  }
+
   public async clear() {
     this.audioFile = null;
     this.featuresFile = null;
+    this.predictionsFile = null;
     this.sampleRate = null;
     this.totalDuration = null;
     this.totalSplits = null;

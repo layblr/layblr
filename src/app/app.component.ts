@@ -19,6 +19,9 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     let hasLoaded = await this.stepService.load();
+    if (this.router.isActive('/import', false)) {
+      return;
+    }
     if (hasLoaded) {
       if (Object.keys(this.stepService.frames).length > 0 && this.stepService.audioFile && this.stepService.featuresFile && this.stepService.totalSplits && this.stepService.totalDuration) {
         await this.router.navigateByUrl('/player');

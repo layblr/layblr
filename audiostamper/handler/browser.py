@@ -19,14 +19,14 @@ class BrowserHandler(tornado.web.RequestHandler):
 		browse_type = self.request.query_arguments.get('type')
 		if browse_type:
 			browse_type = browse_type[0].decode()
-		if not browse_type or browse_type not in ['audio', 'features']:
+		if not browse_type or browse_type not in ['audio', 'features', 'predictions']:
 			browse_type = 'audio'
 
 		# Filter based on the requested type.
 		ext_filter = []
 		if browse_type == 'audio':
-			ext_filter += ['mp3', 'wav']
-		elif browse_type == 'features':
+			ext_filter += ['wav']
+		elif browse_type == 'features' or browse_type == 'predictions':
 			ext_filter += ['csv']
 
 		# Get files.
