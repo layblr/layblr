@@ -9,7 +9,7 @@ import {StepService} from "../../step.service";
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements OnInit {
-  @ViewChild(BrowseModalComponent) browseModal: BrowseModalComponent;
+  @ViewChild(BrowseModalComponent, { static: true }) browseModal: BrowseModalComponent;
 
   constructor(
     private router: Router,

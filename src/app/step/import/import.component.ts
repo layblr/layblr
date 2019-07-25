@@ -10,7 +10,7 @@ import { ImportService } from "../../import.service";
   styleUrls: ['./import.component.scss']
 })
 export class ImportComponent implements OnInit {
-  @ViewChild(BrowseModalComponent) browseModal: BrowseModalComponent;
+  @ViewChild(BrowseModalComponent, { static: true }) browseModal: BrowseModalComponent;
 
   public loading: boolean = false;
 

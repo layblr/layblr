@@ -1,6 +1,6 @@
 import pandas as pd
 
-from logic.analyse import audio_analyse
+from audiostamper.logic.analyse import audio_analyse
 
 
 async def import_predictions(**options):

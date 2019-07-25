@@ -9,8 +9,8 @@ import {BehaviorSubject} from "rxjs";
   styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent implements OnInit, AfterViewChecked {
-  @ViewChild('classifyContainer') private classifyContainer: ElementRef;
-  @ViewChild('player') playerRef: ElementRef;
+  @ViewChild('classifyContainer', { static: true }) private classifyContainer: ElementRef;
+  @ViewChild('player', { static: true }) playerRef: ElementRef;
   private player: HTMLAudioElement;
 
   private currentTime: number;

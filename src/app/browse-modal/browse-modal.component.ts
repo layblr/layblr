@@ -21,7 +21,7 @@ export class BrowseModalComponent implements OnInit {
 
   private resolve: any;
 
-  @ViewChild('modal') modal: ElementRef;
+  @ViewChild('modal', { static: true }) modal: ElementRef;
   private modalEl: JQuery<HTMLElement> = null;
 
   constructor(

@@ -10,8 +10,8 @@ from audiostamper.handler.analyse import AnalyseHandler
 from audiostamper.handler.browser import BrowserHandler
 from audiostamper.handler.export import ExportHandler
 from audiostamper.handler.importer import ImporterHandler
-from handler.audio import AudioFileHandler
-from handler.spa import AppHandler
+from audiostamper.handler.audio import AudioFileHandler
+from audiostamper.handler.spa import AppHandler
 
 
 class App(tornado.web.Application):
