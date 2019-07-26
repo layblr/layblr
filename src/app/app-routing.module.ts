@@ -1,30 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { InputComponent } from "./step/input/input.component";
-import { OptionsComponent } from "./step/options/options.component";
-import { PlayerComponent } from "./step/player/player.component";
-import { ExportComponent } from "./step/export/export.component";
-import {ImportComponent} from "./step/import/import.component";
+import {ProjectsComponent} from "./projects/projects.component";
 
 const routes: Routes = [
   {
-    path: 'import',
-    component: ImportComponent,
-  }, {
-    path: 'input',
-    component: InputComponent,
-  }, {
-    path: 'options',
-    component: OptionsComponent
-  }, {
-    path: 'player',
-    component: PlayerComponent,
-  }, {
-    path: 'export',
-    component: ExportComponent,
+    path: 'projects',
+    component: ProjectsComponent,
   }, {
     path: '',
-    redirectTo: '/input',
+    redirectTo: '/projects',
     pathMatch: 'full',
   }
 ];
