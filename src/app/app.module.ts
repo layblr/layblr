@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { ProjectsComponent } from './projects/projects.component';
+import { ProjectComponent } from './project/project.component';
+import { OverviewComponent } from './overview/overview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectsComponent,
+    ProjectComponent,
+    OverviewComponent,
   ],
   imports: [
     BrowserModule,

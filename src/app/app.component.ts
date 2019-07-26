@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from "@angular/router";
+import {SidebarService} from "./sidebar.service";
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit {
   constructor (
     private router: Router,
     private location: Location,
+    public sidebar: SidebarService,
   ) {}
 
   async ngOnInit() {
