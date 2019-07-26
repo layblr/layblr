@@ -11,7 +11,7 @@ def long_description():
 
 
 def read_version():
-	with open(os.path.join(os.path.dirname(__file__), 'audiostamper', '__init__.py')) as handler:
+	with open(os.path.join(os.path.dirname(__file__), 'layblr', '__init__.py')) as handler:
 		return re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", handler.read(), re.M).group(1)
 
 
@@ -29,18 +29,18 @@ EXCLUDE_FROM_PACKAGES = [
 	'node_modules*',
 ]
 
-PKG = 'audiostamper'
+PKG = 'layblr'
 ######
 setup(
 	name=PKG,
 	version=read_version(),
 	description='Browser based audio feature tagger',
 	long_description=long_description(),
-	keywords='maniaplanet, controller, plugins, apps',
+	keywords='',
 	license='GNU General Public License v3 (GPLv3)',
 	packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
 	package_data={
-		'audiostamper': [
+		'layblr': [
 			'dist/**'
 		]
 	},
@@ -50,9 +50,9 @@ setup(
 	# test_suite='tests',
 	include_package_data=True,
 
-	scripts=['audiostamper/bin/audiostamper'],
+	scripts=['layblr/bin/layblr'],
 	entry_points={'console_scripts': [
-		'audiostamper = audiostamper.stamp:execute_from_cli',
+		'layblr = layblr.stamp:execute_from_cli',
 	]},
 
 	author='Tom Valk',

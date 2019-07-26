@@ -1,4 +1,4 @@
-from audiostamper.stamp import execute_from_cli
+from layblr.stamp import execute_from_cli
 
 
 if __name__ == '__main__':

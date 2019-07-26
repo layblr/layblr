@@ -6,18 +6,18 @@ from tornado_jinja2 import Jinja2Loader
 from tornado.log import enable_pretty_logging
 from tornado.web import StaticFileHandler, RedirectHandler
 
-from audiostamper.handler.analyse import AnalyseHandler
-from audiostamper.handler.browser import BrowserHandler
-from audiostamper.handler.export import ExportHandler
-from audiostamper.handler.importer import ImporterHandler
-from audiostamper.handler.audio import AudioFileHandler
-from audiostamper.handler.spa import AppHandler
+from layblr.handler.analyse import AnalyseHandler
+from layblr.handler.browser import BrowserHandler
+from layblr.handler.export import ExportHandler
+from layblr.handler.importer import ImporterHandler
+from layblr.handler.audio import AudioFileHandler
+from layblr.handler.spa import AppHandler
 
 
 class App(tornado.web.Application):
 	def __init__(self, root_dir, handlers=None, default_host=None, transforms=None, **settings):
 		self.root_dir = root_dir
-		self.build_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'dist', 'stamper')
+		self.build_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'dist', 'layblr')
 
 		if not handlers:
 			handlers = list()

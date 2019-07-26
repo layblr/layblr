@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "stamper": {
+    "layblr": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/stamper",
+            "outputPath": "dist/layblr",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,11 +67,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "stamper:build"
+            "browserTarget": "layblr:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "stamper:build:production",
+              "browserTarget": "layblr:build:production",
               "proxyConfig": "proxy.conf.json"
             }
           }
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "stamper:build"
+            "browserTarget": "layblr:build"
           }
         },
         "test": {
@@ -113,7 +113,7 @@
         }
       }
     },
-    "stamper-e2e": {
+    "layblr-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -122,11 +122,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "stamper:serve"
+            "devServerTarget": "layblr:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "stamper:serve:production"
+              "devServerTarget": "layblr:serve:production"
             }
           }
         },
@@ -142,5 +142,5 @@
       }
     }
   },
-  "defaultProject": "stamper"
+  "defaultProject": "layblr"
 }

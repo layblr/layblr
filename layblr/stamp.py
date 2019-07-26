@@ -1,7 +1,7 @@
 import os
 import tornado.ioloop
 
-from audiostamper.server.app import create_app
+from layblr.server.app import create_app
 
 
 def execute_from_cli():

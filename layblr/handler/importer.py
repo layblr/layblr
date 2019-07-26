@@ -2,7 +2,7 @@ import json
 import os
 import tornado.web
 
-from audiostamper.logic.importer import import_predictions
+from layblr.logic.importer import import_predictions
 
 
 class ImporterHandler(tornado.web.RequestHandler):

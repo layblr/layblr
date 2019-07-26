@@ -3,7 +3,7 @@ from typing import Optional
 
 import tornado.web
 
-from audiostamper.logic.analyse import audio_analyse, feature_analyse
+from layblr.logic.analyse import audio_analyse, feature_analyse
 
 
 class AppHandler(tornado.web.StaticFileHandler):

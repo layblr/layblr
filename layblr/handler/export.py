@@ -2,7 +2,7 @@ import json
 import os
 import tornado.web
 
-from audiostamper.logic import export
+from layblr.logic import export
 
 
 class ExportHandler(tornado.web.RequestHandler):
