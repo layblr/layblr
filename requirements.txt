@@ -1,5 +1,6 @@
 tornado==6.0.3
 tornado-jinja2==0.2.4
+aiosqlite==0.10.0
 
 pandas==0.25.0
 pydub==0.23.1

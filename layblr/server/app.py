@@ -1,3 +1,4 @@
+import asyncio
 import os
 import jinja2
 import tornado.web
@@ -6,7 +7,9 @@ from tornado_jinja2 import Jinja2Loader
 from tornado.log import enable_pretty_logging
 from tornado.web import StaticFileHandler, RedirectHandler
 
+from layblr.database.db import Database
 from layblr.handler.analyse import AnalyseHandler
+from layblr.handler.api.project import ProjectHandler, ProjectDetailHandler
 from layblr.handler.browser import BrowserHandler
 from layblr.handler.export import ExportHandler
 from layblr.handler.importer import ImporterHandler
@@ -15,8 +18,13 @@ from layblr.handler.spa import AppHandler
 
 
 class App(tornado.web.Application):
-	def __init__(self, root_dir, handlers=None, default_host=None, transforms=None, **settings):
+	def __init__(self, root_dir, db, handlers=None, default_host=None, transforms=None, **settings):
 		self.root_dir = root_dir
+		self.data_dir = os.path.join(root_dir, 'data')
+		if not os.path.exists(self.data_dir):
+			os.mkdir(self.data_dir)
+
+		self.db = db
 		self.build_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'dist', 'layblr')
 
 		if not handlers:
@@ -30,6 +38,10 @@ class App(tornado.web.Application):
 			(r'/ajax/analyse/(?P<file>[^\/]+)',		AnalyseHandler),
 			(r'/ajax/audio/(.+\.(mp3|wav))', 		StaticFileHandler, dict(path=self.root_dir)),
 			# (r'/ajax/audio/(.+\.(mp3|wav))',		AudioFileHandler),
+
+			(r'/api/project',							ProjectHandler),
+			(r'/api/project/(?P<project_id>[0-9]+)',	ProjectDetailHandler),
+
 			(r'/(.*)',								AppHandler, dict(path=self.build_dir)),
 		]
 
@@ -50,7 +62,9 @@ class App(tornado.web.Application):
 		super().__init__(handlers, default_host, transforms, **settings)
 
 
-def create_app(root_dir, listen_address, listen_port):
-	app = App(root_dir)
-	app.listen(listen_port, listen_address)
+async def create_app(root_dir):
+	db = Database(os.path.join(root_dir, 'database.sqlite3'))
+	await db.connect()
+
+	app = App(root_dir, db)
 	return app

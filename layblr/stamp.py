@@ -1,24 +1,37 @@
+import asyncio
 import os
+import signal
+
 import tornado.ioloop
+from tornado.platform.asyncio import AsyncIOMainLoop
 
 from layblr.server.app import create_app
+
+signal_received = False
 
 
 def execute_from_cli():
 	# Get the current directory and make it the root dir.
 	root_dir = os.path.abspath(os.curdir)
 
-	# Start app on localhost:8989
+	# Preparations
+	AsyncIOMainLoop().install()
+	loop = asyncio.get_event_loop()
+
+	# Prepare the app.
 	hostname = '0.0.0.0'
 	port = 8989
-	app = create_app(root_dir, hostname, port)
-	print('Listening on: http://{}:{}/'.format(hostname, port))
+	app = loop.run_until_complete(create_app(root_dir))
 
-	# Run forever.
+	signal.signal(signal.SIGINT, signal.SIG_DFL)
+
+	# Start the server.
+	app.listen(port, hostname)
+	print('Listening on: http://{}:{}/'.format(hostname, port))
 	try:
-		tornado.ioloop.IOLoop.current().start()
+		loop.run_forever()
 	except KeyboardInterrupt:
-		print('Shutting down API server...')
+		pass
 
 
 if __name__ == '__main__':
