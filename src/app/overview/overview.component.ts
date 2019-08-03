@@ -14,7 +14,7 @@ export class OverviewComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.projects = await this.api.get_projects();
+    this.projects = await this.api.getProjects();
   }
 
 }

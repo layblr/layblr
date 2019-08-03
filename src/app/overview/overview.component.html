@@ -1,7 +1,20 @@
-<h2>Projects</h2>
+<div>
+  <div class="float-right">
+    <a routerLink="add-project" class="btn btn-outline-secondary">
+      <i class="fas fa-plus"></i>
+      New Project
+    </a>
+  </div>
+  <h2>Projects</h2>
+</div>
+
+<div class="clearfix"></div>
+
 
 <div class="list-group">
   <a *ngFor="let project of projects" class="list-group-item list-group-item-action" [routerLink]="['project', project.id]">
     {{project.name}} (#{{project.id}})
   </a>
 </div>
+
+
