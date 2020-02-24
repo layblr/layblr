@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Project} from "./model/project";
+import {DirectoryEntry} from "./model/directory";
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,17 @@ export class ApiService {
       }, (error: any) => {
         console.error(error);
       });
+    });
+  }
+
+  public async browseDirectory(projectId: number, subdir: string = ''): Promise<DirectoryEntry[]> {
+    return new Promise((resolve, reject) => {
+      this.http.get(`/api/project/${projectId}/browse/${subdir}`)
+        .subscribe((data: any) => {
+          return resolve(data.data.listing as DirectoryEntry[]);
+        }, (error) => {
+          return reject(error);
+        });
     });
   }
 }

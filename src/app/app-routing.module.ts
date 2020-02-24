@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { OverviewComponent } from "./overview/overview.component";
 import { ProjectComponent } from "./project/project.component";
 import { ProjectFormComponent } from "./project-form/project-form.component";
+import { BrowserComponent } from "./project/browser/browser.component";
 
 const routes: Routes = [
   {
@@ -13,7 +14,11 @@ const routes: Routes = [
     component: ProjectFormComponent,
   }, {
     path: 'project/:project_id',
-    component: ProjectComponent,
+    children: [
+      {path: 'info', component: ProjectComponent},
+      {path: 'browse', component: BrowserComponent},
+      {path: 'browse/:path', component: BrowserComponent},
+    ]
   }
 ];
 

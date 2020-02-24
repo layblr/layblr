@@ -9,6 +9,7 @@ from tornado.web import StaticFileHandler, RedirectHandler
 
 from layblr.database.db import Database
 from layblr.handler.analyse import AnalyseHandler
+from layblr.handler.api.browser import ProjectBrowseHandler
 from layblr.handler.api.project import ProjectHandler, ProjectDetailHandler
 from layblr.handler.browser import BrowserHandler
 from layblr.handler.export import ExportHandler
@@ -39,8 +40,10 @@ class App(tornado.web.Application):
 			(r'/ajax/audio/(.+\.(mp3|wav))', 		StaticFileHandler, dict(path=self.root_dir)),
 			# (r'/ajax/audio/(.+\.(mp3|wav))',		AudioFileHandler),
 
-			(r'/api/project',							ProjectHandler),
-			(r'/api/project/(?P<project_id>[0-9]+)',	ProjectDetailHandler),
+			(r'/api/project',												ProjectHandler),
+			(r'/api/project/(?P<project_id>[0-9]+)',						ProjectDetailHandler),
+			(r'/api/project/(?P<project_id>[0-9]+)/browse',					ProjectBrowseHandler),
+			(r'/api/project/(?P<project_id>[0-9]+)/browse/(?P<path>.*)',	ProjectBrowseHandler),
 
 			(r'/(.*)',								AppHandler, dict(path=self.build_dir)),
 		]

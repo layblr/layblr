@@ -9,6 +9,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { ProjectComponent } from './project/project.component';
 import { OverviewComponent } from './overview/overview.component';
 import { ProjectFormComponent } from './project-form/project-form.component';
+import { BrowserComponent } from './project/browser/browser.component';
+import { HumanSizePipe } from './human-size.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { ProjectFormComponent } from './project-form/project-form.component';
     ProjectComponent,
     OverviewComponent,
     ProjectFormComponent,
+    BrowserComponent,
+    HumanSizePipe,
   ],
   imports: [
     BrowserModule,

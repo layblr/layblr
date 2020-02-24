@@ -12,7 +12,7 @@
 
 
 <div class="list-group">
-  <a *ngFor="let project of projects" class="list-group-item list-group-item-action" [routerLink]="['project', project.id]">
+  <a *ngFor="let project of projects" class="list-group-item list-group-item-action" [routerLink]="['project', project.id, 'info']">
     {{project.name}} (#{{project.id}})
   </a>
 </div>

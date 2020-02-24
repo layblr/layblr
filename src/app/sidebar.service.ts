@@ -26,14 +26,28 @@ export class SidebarService {
 
   async projectSidebar(project) {
     this.project = project;
-
+    this.menu = new Menu();
+    this.menu.items = [
+      new MenuItem('Overview', `project/${this.project.id}/info`),
+      new MenuItem('Browse', `project/${this.project.id}/browse`),
+    ];
+    this.active = true;
   }
 }
 
 export class MenuItem {
   public name: string;
   public submenu: Menu|null = null;
+  public route: string;
+  public params: any;
 
+  public constructor(
+    name: string, route: string, params: any = {}
+  ) {
+    this.name = name;
+    this.route = route;
+    this.params = params;
+  }
 }
 
 export class Menu {
